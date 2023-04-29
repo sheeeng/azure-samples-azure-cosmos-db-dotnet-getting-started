@@ -10,10 +10,12 @@ namespace CosmosGettingStartedTutorial
     class Program
     {
         // The Azure Cosmos DB endpoint for running this sample.
-        private static readonly string EndpointUri = ConfigurationManager.AppSettings["EndPointUri"];
+        // private static readonly string EndpointUri = ConfigurationManager.AppSettings["EndPointUri"];
+        private static readonly string EndpointUri = Environment.GetEnvironmentVariable("URI");
 
         // The primary key for the Azure Cosmos account.
-        private static readonly string PrimaryKey = ConfigurationManager.AppSettings["PrimaryKey"];
+        // private static readonly string PrimaryKey = ConfigurationManager.AppSettings["PrimaryKey"];
+        private static readonly string PrimaryKey = Environment.GetEnvironmentVariable("KEY");
 
         // The Cosmos client instance
         private CosmosClient cosmosClient;
@@ -86,7 +88,7 @@ namespace CosmosGettingStartedTutorial
 
         // <CreateContainerAsync>
         /// <summary>
-        /// Create the container if it does not exist. 
+        /// Create the container if it does not exist.
         /// Specifiy "/LastName" as the partition key since we're storing family information, to ensure good distribution of requests and storage.
         /// </summary>
         /// <returns></returns>
@@ -133,7 +135,7 @@ namespace CosmosGettingStartedTutorial
 
             try
             {
-                // Read the item to see if it exists.  
+                // Read the item to see if it exists.
                 ItemResponse<Family> andersenFamilyResponse = await this.container.ReadItemAsync<Family>(andersenFamily.Id, new PartitionKey(andersenFamily.LastName));
                 Console.WriteLine("Item in database with id: {0} already exists\n", andersenFamilyResponse.Resource.Id);
             }
@@ -234,7 +236,7 @@ namespace CosmosGettingStartedTutorial
         {
             ItemResponse<Family> wakefieldFamilyResponse = await this.container.ReadItemAsync<Family>("Wakefield.7", new PartitionKey("Wakefield"));
             var itemBody = wakefieldFamilyResponse.Resource;
-            
+
             // update registration status from false to true
             itemBody.IsRegistered = true;
             // update grade of child

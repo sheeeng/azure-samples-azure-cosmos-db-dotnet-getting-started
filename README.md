@@ -14,6 +14,19 @@ This sample shows you how to use the Azure Cosmos DB service to store and access
 
 For a complete end-to-end walkthrough of creating this application, please refer to the [full tutorial on the Azure Cosmos DB documentation page](https://aka.ms/CosmosDotnetGetStarted).
 
+## Prerequisites
+
+- Install [direnv](https://direnv.net/).
+
+- Create `.envrc` file with the following similar content.
+
+```shell
+URI='CHANGEME_AZURE_COSMOS_ACCOUNT_URI'
+KEY='CHANGEME_AZURE_COSMOS_ACCOUNT_KEY'
+```
+
+- The solution still cannot run as it contains error.
+
 ## Running this sample
 
 1. Before you can run this sample, you must have the following prerequisites:
@@ -24,7 +37,7 @@ For a complete end-to-end walkthrough of creating this application, please refer
 
 1. From Visual Studio, open the **GetStarted.sln** file from the root directory.
 
-1. In Visual Studio Build menu, select **Build Solution** (or Press F6). 
+1. In Visual Studio Build menu, select **Build Solution** (or Press F6).
 
 1. Retrieve the URI and PRIMARY KEY (or SECONDARY KEY) values from the Keys blade of your Azure Cosmos DB account in the Azure portal. For more information on obtaining endpoint & keys for your Azure Cosmos DB account refer to [View, copy, and regenerate access keys and passwords](https://docs.microsoft.com/en-us/azure/cosmos-db/manage-account#keys)
 
